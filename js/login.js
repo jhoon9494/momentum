@@ -2,33 +2,39 @@ const loginForm = document.querySelector("#loginForm");
 const loginName = loginForm.querySelector("#loginName");
 const loginBtn = loginForm.querySelector("#loginBtn");
 
-const logoutForm = document.querySelector("#logoutForm")
+const logoutForm = document.querySelector("#logoutForm");
 const userName = logoutForm.querySelector("#userName");
 const logoutBtn = logoutForm.querySelector("#logoutBtn");
 
-function loginClickHandler(event){
+const HIDDEN_CLASSNAME = "hidden";
+const LOGINNAME_KEY = "loginName";
+
+function loginSubmitHandler(event){
   event.preventDefault();
-  if(loginName.value !== ""){
-    userName.innerText = `안녕하세요 ${loginName.value}님`;
-    saveName(loginName.value);
-
-    loginName.value = "" //id 입력 후 input 초기화
-    loginForm.classList.toggle("hidden");
-    logoutForm.classList.toggle("hidden");
-  } else {
-    alert("Please login");
-  }
+  userName.innerText = `안녕하세요 ${loginName.value}님`;
+  localStorage.setItem(LOGINNAME_KEY, loginName.value); //id 저장
+  toggle(HIDDEN_CLASSNAME);
 }
 
-function saveName(username){ //id 저장
-  localStorage.setItem("loginName", username);
+function logoutSubmitHandler(event){
+  event.preventDefault(); 
+  localStorage.removeItem(LOGINNAME_KEY);
+  loginName.value = ""; //id 입력창 초기화
+  toggle(HIDDEN_CLASSNAME);
 }
 
-function logoutClickHandler(){
-  localStorage.removeItem("loginName")
-  loginForm.classList.toggle("hidden");
-  logoutForm.classList.toggle("hidden");
+function toggle(className){
+  loginForm.classList.toggle(className);
+  logoutForm.classList.toggle(className);
 }
 
-loginBtn.addEventListener("click", loginClickHandler);
-logoutBtn.addEventListener("click", logoutClickHandler);
+const savedUsername = localStorage.getItem(LOGINNAME_KEY);
+
+if(savedUsername === null){
+  loginForm.addEventListener("submit", loginSubmitHandler);
+} else {
+  userName.innerText = `안녕하세요 ${savedUsername}님`;
+  loginForm.classList.add(HIDDEN_CLASSNAME);
+  logoutForm.classList.remove(HIDDEN_CLASSNAME);
+  logoutForm.addEventListener("submit", logoutSubmitHandler);
+}
