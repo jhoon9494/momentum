@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Qahiri&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 
 html, body{
   height: 100%;
@@ -8,6 +9,7 @@ html, body{
   margin: 0;
 } 
 #container{ 
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
@@ -23,36 +25,106 @@ html, body{
 }
 
 #weather{
+  background: linear-gradient(white 35%, #bfbebe 65%, #5c5c5c 100%);
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
   font-family: 'Teko', sans-serif;
   font-size: 25px;
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
 }
 
 #clock{ 
+  background: linear-gradient(white 35%, #bfbebe 65%, #5c5c5c 100%);
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
+  position: fixed;
+  top: 5%;
   font-family: 'Qahiri', sans-serif;
-  text-shadow: 5px 5px 3px #212121;
   font-size: 200px;
 }
 
+input::placeholder{
+  color: #a0a0a0;
+  font-size: medium;
+  text-align: center;
+}
+
+#loginForm, #logoutForm{
+  position: absolute;
+  top: 31%;
+}
+
+#loginForm #loginName, #todoForm input{
+  border: 0px;
+  border-bottom: solid 2px white;
+  background-color: transparent;
+  text-align: center; /* 입력값 가운데 정렬 */
+  color: white; /* 입력값 색상 지정 */
+}
+
 #logoutForm #userName{
+  background: linear-gradient(#969696 5%, #bfbebe 35%, #ffffff 45%, #ffffa7 100%);
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
   font-family: 'Black Han Sans', sans-serif;
   font-size: 40px;
-  text-shadow: 4px 4px 3px #212121;
+}
+
+#loginForm #loginBtn, #logoutForm #logoutBtn{
+  background: linear-gradient(white 35%, #bfbebe 65%, #5c5c5c 100%);
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
+  border: 0px;
+  font-size: 17px;
+  background-color: transparent;
+  font-family: 'Black Han Sans', sans-serif;
+}
+
+#todoForm div, #todoContainer{
+  font-family: 'Black Han Sans', sans-serif;
+}
+
+#todoForm div{
+  background: linear-gradient(white 35%, #bfbebe 65%, #5c5c5c 100%);
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
 }
 
 #todoForm {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: absolute;
+  bottom: 55%;
 }
 
 #todoForm div{
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+#todoContainer{
+  border-radius: 25px;
+  width: 80%;
+  height: 40%;
+  position: absolute;
+  top: 50%;  
+}
+
+#todoList button{
+  border-radius: 50%;
+  background: linear-gradient(45deg, white 25%, #bfbebe 65%, #5c5c5c 80%, red 100%);
 }
 
 ul{
+  font-size: 25px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   padding: 0px;
   list-style: none;
 }
@@ -64,6 +136,7 @@ ul{
   position: absolute;
   bottom: 10px;
   text-shadow: 2px 2px 3px #212121;
+  font-family: 'Nanum Myeongjo', serif;
 }
 
 img{

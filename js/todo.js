@@ -1,5 +1,6 @@
 const todoForm = document.querySelector("#todoForm");
 const inputTodo = document.querySelector("#todoForm input");
+const todoContainer = document.querySelector("#todoContainer");
 const ul = document.querySelector("#todoList");
 
 const TODOLIST_KEY = "todo-list";
@@ -33,6 +34,8 @@ function paintTodo(todo){
   li.appendChild(button);
   li.appendChild(span);
   ul.appendChild(li);
+  todoContainer.style.backgroundColor = "rgb(160, 160, 160, 0.45)";
+  todoContainer.style.transition = "1s";
 }
 
 function deleteTodo(event){
@@ -40,6 +43,10 @@ function deleteTodo(event){
   li.remove();
   todoArray = todoArray.filter(todo => todo.id !== parseInt(li.id));
   saveTodos(todoArray);
+  if(todoArray.length === 0){
+    todoContainer.style.backgroundColor = "";
+    todoContainer.style.transition = "1s";
+  }
 }
 
 const savedTodos = JSON.parse(localStorage.getItem(TODOLIST_KEY));
